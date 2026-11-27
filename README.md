@@ -24,6 +24,8 @@ It ships compiled runtime files in `lib/` and protobuf artifacts in `WAProto/`, 
 
 ## 🆕 Changelog / Updates
 
+**v1.0.3** — Fix sendStatusMentions: status tidak sampai ke peserta grup yang memakai LID, daftar penerima sekarang memakai nomor asli.
+
 **v1.0.1** — Package renamed to `@kaze012/ichigo-baileys`; repository moved to `kazehayadev01/ichigo-baileys`. WAProto updated to WhatsApp Web `2.3000.1056191857`.
 
 **v1.0.0** — Initial release.
