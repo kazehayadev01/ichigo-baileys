@@ -1,0 +1,66 @@
+export type AudioConfig = {
+    sampleRate: number;
+    channels: number;
+    bitsPerSample: number;
+    framesPerChunk: number;
+};
+
+export type AudioInputSource = string | Buffer | Uint8Array;
+
+export type CallOptions = {
+    to?: string;
+    audioSource?: AudioInputSource;
+    audio?: AudioInputSource;
+    durationMs?: number;
+    loop?: boolean;
+};
+
+export type CallEvents = {
+    ringing: () => void;
+    connected: () => void;
+    audio: (pcm: Float32Array) => void;
+    ended: (reason: string) => void;
+    error: (err: Error) => void;
+};
+
+export type VoipSdkConfig = {
+    authDir?: string;
+    sock?: any;
+    resourcesPath?: string;
+    wasmPath?: string;
+    enableLogs?: boolean;
+};
+
+export declare const CallState: {
+    readonly Idle: 0;
+    readonly Calling: 1;
+    readonly PreacceptReceived: 2;
+    readonly ReceivedCall: 3;
+    readonly AcceptSent: 4;
+    readonly AcceptReceived: 5;
+    readonly Active: 6;
+    readonly ActiveElsewhere: 7;
+    readonly Ending: 13;
+};
+
+export type CallState = (typeof CallState)[keyof typeof CallState];
+
+export type RelayListUpdate = {
+    relay_key: string;
+    relay_tokens: string[];
+    auth_tokens?: string[];
+    enable_edgeray_dtls_active_mode?: boolean;
+    relays: ReadonlyArray<{
+        relay_id: number;
+        relay_name: string;
+        token_id: number;
+        auth_token_id?: number;
+        addresses: ReadonlyArray<{
+            protocol: number;
+            ipv4?: string;
+            ipv6?: string;
+            port?: number;
+            port_v6?: number;
+        }>;
+    }>;
+};
