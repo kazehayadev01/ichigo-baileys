@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.6] - 2026-11-28
+- WAProto diperbarui ke WhatsApp Web `2.3000.1056409569` (sumber: wppconnect-team/wa-proto, di-merge: 46 entitas baru, field baru `themeMessage` dan `VpcRequestMessage.token`, struktur Labyrinth `*Output` baru). Entitas dan field yang sudah ada di proto sebelumnya tetap dipertahankan; `required` diubah menjadi `optional`.
+- Versi WhatsApp Web default (fallback) disamakan ke build `1056409569`. Versi lama yang sudah usang menyebabkan pairing code gagal ("Couldn't link device").
+
 ## [1.0.5] - 2026-11-28
 - Fix `sendStickerAudio()`: patch `proto.Message.encode` kini dipasang sekali (idempoten) dan tidak dikembalikan setelah kirim. Sebelumnya, dua pengiriman yang tumpang tindih bisa membuat `encode` global menempel ke versi patch dan memengaruhi pesan lain sampai bot di-restart.
 - Fix `sendStickerAudio()`: transparansi gambar sticker dipertahankan (sebelumnya area transparan menjadi hitam karena `pad` tanpa alpha).

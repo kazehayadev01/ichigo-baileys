@@ -1,7 +1,7 @@
 {
   "name": "@kaze012/ichigo-baileys",
   "type": "module",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Modded Baileys v7 with interactive message, album, newsletter, and VoIP support",
   "license": "MIT",
   "author": "Kaze (https://github.com/kazehayadev01)",
