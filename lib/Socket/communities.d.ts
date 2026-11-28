@@ -243,7 +243,7 @@ export declare const makeCommunitiesSocket: (config: SocketConfig) => {
   ) => Promise<import("../Types/index.js").WAMessage>;
   sendStickerAudio: (
     jid: string,
-    content: { audio: any; sticker?: any },
+    content: { audio: any; sticker?: any; ptt?: boolean; maxSeconds?: number },
     options?: any,
   ) => Promise<any>;
   sendTable: (

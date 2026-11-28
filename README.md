@@ -24,6 +24,8 @@ It ships compiled runtime files in `lib/` and protobuf artifacts in `WAProto/`, 
 
 ## 🆕 Changelog / Updates
 
+**v1.0.5** — Fix `sendStickerAudio`: patch encode tidak lagi bocor saat dua pengiriman bersamaan, transparansi sticker dipertahankan, audio kini membawa `seconds`/`ptt`/`waveform`, opsi baru `ptt` dan `maxSeconds` (default 300 detik).
+
 **v1.0.4** — VoIP: opsi `autoRejectIncoming` untuk menolak panggilan masuk otomatis; event `call` kini punya status `preaccept` serta field `reason`, `durationSec`, `latencyMs`; `rejectCall()` memvalidasi argumen. Tipe TypeScript diperbarui. Hardening VoIP: panggilan berikutnya tidak lagi tertolak "A call is already active", callback tidak nyangkut ke client lama setelah reconnect, wrapper `keys.set` tidak menumpuk, target bisa nomor/JID/LID, opsi `loop`. Tambahan `getAuthStateStats()` & `pruneAuthState()` untuk menjaga folder session tetap ringan.
 
 **v1.0.3** — Fix sendStatusMentions: status tidak sampai ke peserta grup yang memakai LID, daftar penerima sekarang memakai nomor asli.
@@ -1247,10 +1249,12 @@ await sock.sendStatusMention({ text: "Big update coming!" }, [
 await sock.sendStickerAudio(jid, {
   audio: audioBuffer, // Buffer, local path or http(s) URL
   sticker: "https://example.com/image.jpg", // optional, defaults to ./media/menu.jpg
+  ptt: true, // optional, default true
+  maxSeconds: 300, // optional, audio longer than this is trimmed (default 300)
 });
 ```
 
-Requires `ffmpeg` in `PATH`. The image is converted to a 512x512 WebP and the audio to Opus.
+Requires `ffmpeg` in `PATH`. The image is converted to a 512x512 WebP (transparency is kept) and the audio to Opus. The audio message carries `seconds`, `ptt` and a 64-point `waveform`; the result includes `audio.seconds`.
 
 **Product Message:**
 

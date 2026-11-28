@@ -137,7 +137,7 @@ export declare const makeBusinessSocket: (config: SocketConfig) => {
   ) => Promise<import("../index.js").WAMessage>;
   sendStickerAudio: (
     jid: string,
-    content: { audio: any; sticker?: any },
+    content: { audio: any; sticker?: any; ptt?: boolean; maxSeconds?: number },
     options?: any,
   ) => Promise<any>;
   sendTable: (

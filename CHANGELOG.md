@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.5] - 2026-11-28
+- Fix `sendStickerAudio()`: patch `proto.Message.encode` kini dipasang sekali (idempoten) dan tidak dikembalikan setelah kirim. Sebelumnya, dua pengiriman yang tumpang tindih bisa membuat `encode` global menempel ke versi patch dan memengaruhi pesan lain sampai bot di-restart.
+- Fix `sendStickerAudio()`: transparansi gambar sticker dipertahankan (sebelumnya area transparan menjadi hitam karena `pad` tanpa alpha).
+- `sendStickerAudio()`: audio kini punya `seconds`, `ptt` dan `waveform`, jadi durasi dan bentuk gelombang tampil benar di WhatsApp. Opsi baru `ptt` (default `true`) dan `maxSeconds` (default `300`); audio yang lebih panjang dipotong, dan Ogg yang melebihi batas di-encode ulang. Hasil kembalian menyertakan `audio.seconds`.
+- TypeScript declarations `sendStickerAudio` diperbarui (`ptt?`, `maxSeconds?`).
+
 ## [1.0.4] - 2026-11-28
 - VoIP: new `VoipClient` option `autoRejectIncoming` — incoming call offers are rejected automatically (the active outgoing call is never affected).
 - Call events: added `preaccept` status (previously reported as `ringing`), plus `reason`, `durationSec` and `latencyMs` fields; `groupJid` is kept on follow-up events of group calls.

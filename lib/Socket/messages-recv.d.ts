@@ -37,7 +37,7 @@ export declare const makeMessagesRecvSocket: (config: SocketConfig) => {
     updateMediaMessage: (message: WAMessage) => Promise<WAMessage>;
     sendStatusMention: (content: any, jids?: string[]) => Promise<WAMessage>;
   sendStatusMentions: (content: any, jids?: string[]) => Promise<WAMessage>;
-  sendStickerAudio: (jid: string, content: { audio: any; sticker?: any }, options?: any) => Promise<any>;
+  sendStickerAudio: (jid: string, content: { audio: any; sticker?: any; ptt?: boolean; maxSeconds?: number }, options?: any) => Promise<any>;
     sendTable: (jid: string, title: string, headers: string[], rows: string[][], quoted?: any, options?: import("../Utils/index.js").RichMessageOptions) => Promise<{
         message: any;
         messageId: string;
